@@ -11,6 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { AppLayoutModule } from './app-layout/app-layout.module';
 
+
+
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/country' },
   { path: '**', component: PageNotFoundComponent }
@@ -30,6 +32,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     PageNotFoundComponent
+   
+    
   ],
   providers: [
     ConfigProvider,

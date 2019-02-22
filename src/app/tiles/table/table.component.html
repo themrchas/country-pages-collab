@@ -10,11 +10,14 @@
         <perfect-scrollbar style="height:230px">
                 <table>
                     <tr class='table-headings'>
-                    <th *ngFor="let column of settings.columns">{{column.displayName}}</th>
+                        <th *ngFor="let column of settings.columns">{{column.displayName}}</th> 
                     </tr>
-                    <ng-container *ngFor="let listItem of listItems">
+                    <ng-container *ngFor="let listItem of parsedListItems | async">
                     <tr class="list-item">
-                        <td *ngFor="let column of listItem.columns">{{column}}</td>
+                            <td *ngFor="let column of settings.columns">{{listItem[column.columnName]}}</td>
+                    <!--   <td *ngFor="let column of listItem.columns">{{column}}</td>  -->
+                     <!--   <td *ngFor="let column of listItem.columns">{{column}}</td> -->
+                   <!--  <td>{{listItem}}</td> -->
                     </tr>
                     </ng-container>
                 </table>

@@ -1,32 +1,76 @@
-import { Input, Component, OnInit } from '@angular/core';
+import { Input, Component, OnInit, ViewChild } from '@angular/core';
 import { SpListService } from '../../services/sp-list.service';
 
 import { Observable, of } from 'rxjs';
 import * as moment from 'moment';
 import { formatDate } from '@angular/common';
 
+//import { MatPaginator, TableDataSource, MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
+import { MatPaginator} from '@angular/material';
+
+
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  selector: 'app-generic-table',
+  templateUrl: './generic-table.component.html',
+  styleUrls: ['./generic-table.component.css']
 })
-export class TableComponent implements OnInit {
+
+export class GenericTableComponent implements OnInit {
   @Input()
   settings: any;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+ // @ViewChild(MatPagintor) pagintor: MatPaginator;
+  
   listItems: Array<any>;
 
-  parsedListItems: Observable<Array<any>>;
+ parsedListItems: Observable<Array<any>>;
+
+
+ dataSource  = new MatTableDataSource<any>();
+
+ // dataSource = new MatTableDataSource<Observable<Array<any>>>(this.parsedListItems);
+
+
+  
+
+
+
+  /*** mat-table */
+  columnsToDisplay = ['title','time'];
+
+
+testListItems: Array<any> = [
+
+  {title:"Entry One", Created:"12/1/2018"},
+  {title:"Entry Two", Created:"1/1/2019"}
+
+];
+
+
+
+/****************************/
+
+
+
 
   formatDate(strDate:string): void {
 
     console.log('passed date', strDate,'converted date',moment(strDate).format('MM/DD/YYYY'));
   }
-
   
-
   constructor(private spListService: SpListService) { }
 
   ngOnInit() {
+
+    
+
+    this.dataSource.paginator = this.paginator;
+    
+
+
     this.listItems = Array<any>();
     this.spListService.getListItems(this.settings.source.webURL, this.settings.source.listName,
       this.settings.source.order, this.settings.source.filter, this.settings.source.rowLimit).subscribe({
@@ -53,10 +97,15 @@ export class TableComponent implements OnInit {
 
           console.log('listItems is',this.listItems);
 
-          this.parsedListItems = of(this.listItems);
+        //  this.parsedListItems = of(this.listItems);
+        this.parsedListItems = of(this.listItems);
+
+        this.dataSource.data = this.listItems;
         }
       }
     });
+
+   // this.data
   }
 
 }

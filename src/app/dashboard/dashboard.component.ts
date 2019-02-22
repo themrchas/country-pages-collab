@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
     this.tableSettings = {
       title: 'Sample List',
       source: {
-        webURL: 'http://localhost:8080/sites/SOCAFDEV',
+        webURL: 'http://localhost:8080/sites/dev/SOCAFDEV',
         listName: 'SampleList'
       },
       columns: [
