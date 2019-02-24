@@ -9,7 +9,7 @@
     <div class="dashboard-container">
     <ng-container *ngIf="selectedCountry | async as selectedCountry">
 
-      <mat-grid-list cols="3" rowHeight="350px" gutterSize="1rem">
+      <mat-grid-list cols="3" rowHeight="400px" gutterSize="1rem">
           <mat-grid-tile rowspan="1" colspan="1">
               <app-news [settings]="newsSettings"></app-news>
           </mat-grid-tile>
@@ -19,7 +19,7 @@
         <mat-grid-tile>
             <app-map [country]="selectedCountry"></app-map>
         </mat-grid-tile>
-        <mat-grid-tile rowspan="1" colspan="2">
+        <mat-grid-tile colspan="2">
             <app-generic-table [settings]="tableSettings"></app-generic-table>
         </mat-grid-tile> 
         

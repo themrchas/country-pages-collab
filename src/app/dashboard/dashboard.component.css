@@ -16,7 +16,7 @@
     padding: 20px;
 }
 
-app-table, app-news, app-map {
+app-table, app-news, app-map, app-generic-table {
     height: 100%;
     width: calc(100% - 10px);
 }
