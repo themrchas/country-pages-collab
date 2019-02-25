@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatCardModule, MatListModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatGridListModule, MatTableModule, MatPaginatorModule } from '@angular/material';
+import { MatCardModule, MatListModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatGridListModule, MatTableModule, MatPaginatorModule, MatSortModule} from '@angular/material';
+
+//List searching
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
+
 import { DashboardComponent } from './dashboard.component';
 import { UpcomingEventsComponent } from '../tiles/upcoming-events/upcoming-events.component';
 import { TodayEventsComponent } from '../tiles/today-events/today-events.component';
@@ -44,7 +48,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatToolbarModule,
     PerfectScrollbarModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule 
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG}

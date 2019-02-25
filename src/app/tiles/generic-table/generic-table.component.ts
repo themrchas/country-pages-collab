@@ -1,4 +1,4 @@
-import { Input, Component, OnInit, ViewChild } from '@angular/core';
+import { Input, Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SpListService } from '../../services/sp-list.service';
 
 import { Observable, of } from 'rxjs';
@@ -8,6 +8,8 @@ import { formatDate } from '@angular/common';
 //import { MatPaginator, TableDataSource, MatTableDataSource } from '@angular/material';
 import { MatTableDataSource } from '@angular/material';
 import { MatPaginator} from '@angular/material';
+import { MatSort } from '@angular/material';
+import { MatFormField } from '@angular/material';
 
 
 @Component({
@@ -16,11 +18,14 @@ import { MatPaginator} from '@angular/material';
   styleUrls: ['./generic-table.component.css']
 })
 
-export class GenericTableComponent implements OnInit {
+export class GenericTableComponent implements OnInit, AfterViewInit {
   @Input()
+
+  //Provided by parent template
   settings: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
  // @ViewChild(MatPagintor) pagintor: MatPaginator;
   
@@ -39,7 +44,7 @@ export class GenericTableComponent implements OnInit {
 
 
   /*** mat-table */
-  columnsToDisplay = ['title','time'];
+  columnsToDisplay = ['Title','Created'];
 
 
 testListItems: Array<any> = [
@@ -49,8 +54,15 @@ testListItems: Array<any> = [
 
 ];
 
+onRowClicked(event:any) : void {
 
+  console.log('Row clicked with event:', event);
+}
 
+doFilter(value:string) : void  {
+  console.log('filtering on',value);
+  this.dataSource.filter = value.trim();
+}
 /****************************/
 
 
@@ -106,6 +118,10 @@ testListItems: Array<any> = [
     });
 
    // this.data
+  }
+
+  ngAfterViewInit() : void {
+    this.dataSource.sort = this.sort;
   }
 
 }
