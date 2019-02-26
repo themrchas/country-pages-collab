@@ -8,10 +8,12 @@
  
  <div> 
 
-  <div>
-    <mat-form-field>
+  <div  id="flexIt">
+    <mat-form-field  style="display: inline-block">
       <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
+
+    <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
 
   </div>
 
@@ -29,12 +31,14 @@
   
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
       <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"
-        (click)="onRowClicked($event)">
+        (click)="onRowClicked($event)"
+      >
       </tr>
     
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator> 
+   
 
   </div> 
   </mat-card-content>
+  </mat-card> 

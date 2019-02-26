@@ -36,10 +36,9 @@ export class GenericTableComponent implements OnInit, AfterViewInit {
 
  dataSource  = new MatTableDataSource<any>();
 
+ 
+
  // dataSource = new MatTableDataSource<Observable<Array<any>>>(this.parsedListItems);
-
-
-  
 
 
 
